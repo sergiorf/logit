@@ -1,0 +1,31 @@
+# Copyright(c) 2022 logit authors Distributed under the MIT License (http://opensource.org/licenses/MIT)
+
+cmake_minimum_required(VERSION 3.0)
+
+project(LogIt VERSION 0.0.1 LANGUAGES CXX)
+set(PROJECT_DESCRIPTION "Header-only C++ logging library")
+set(PROJECT_URL "https://github.com/sergiorf/logit")
+
+message(STATUS "Build LogIt")
+
+include_directories(
+    "include"
+)
+
+add_subdirectory(Examples)
+
+FIND_PROGRAM(CLANG_FORMAT "clang-format")
+IF(CLANG_FORMAT)
+	set(CHECK_CXX_SOURCE_FILES
+	)
+
+    ADD_CUSTOM_TARGET(
+        reformat
+        COMMAND
+        ${CLANG_FORMAT}
+        -i
+        -style=file
+        ${CHECK_CXX_SOURCE_FILES}
+        COMMENT "Auto formatting of all source files"
+    )
+ENDIF()
