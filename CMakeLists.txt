@@ -8,8 +8,16 @@ set(PROJECT_URL "https://github.com/sergiorf/logit")
 
 message(STATUS "Build LogIt")
 
-include_directories(
-    "include"
+# ---------------------------------------------------------------------------------------
+# Header only library
+# ---------------------------------------------------------------------------------------
+add_library(logit INTERFACE)
+target_include_directories(logit INTERFACE "${CMAKE_CURRENT_LIST_DIR}/include")
+target_sources(logit INTERFACE 
+    "${CMAKE_CURRENT_LIST_DIR}/include/LogIt/Logger.h"
+)
+add_custom_target(logit_ SOURCES 
+    "${CMAKE_CURRENT_LIST_DIR}/include/LogIt/Logger.h"
 )
 
 add_subdirectory(Examples)

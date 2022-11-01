@@ -6,6 +6,6 @@ int main()
 
     auto logger = LogIt::Logger();
     
-    logger.info("test");
+    logger.Info("test");
 }
 
